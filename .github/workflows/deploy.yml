@@ -27,7 +27,6 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/my-static-site:latest
 
   provision-and-deploy:
-    
     needs: build-and-push
     runs-on: ubuntu-latest
     env:
@@ -44,6 +43,9 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
+
+      - name: Teardown Old Environment
+        run: terraform destroy -auto-approve
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
