@@ -10,10 +10,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "eu-west-2"
-}
-
 variable "dockerhub_username" {
   description = "The Docker Hub username passed from GitHub Actions"
   type        = string
